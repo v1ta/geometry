@@ -1,4 +1,5 @@
 # Geometry
+[![GoDoc](https://godoc.org/github.com/v1ta/geometry?status.svg)](https://godoc.org/github.com/v1ta/geometry)
 
 ### Usage
 ```
