@@ -3,6 +3,7 @@
 
 ### Usage
 ```
+git clone https://github.com/v1ta/geometry.git $GOPATH/src/github.com/v1ta
 go build
 go test
 go run cmd/main.go
