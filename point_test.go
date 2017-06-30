@@ -2,7 +2,7 @@ package geometry
 
 import "testing"
 
-// TestContainsCoords check whether a point has a coordinate present in a []Point
+// TestContainsCoords check whether a point has a coordinate present in a []Point.
 func TestContainsCoords(t *testing.T) {
 
 	pointArray := []Point{Point{-1, 4}, Point{5, 6}, Point{90.4, 2}}
@@ -23,7 +23,7 @@ func TestContainsCoords(t *testing.T) {
 
 }
 
-// TestPointString test toString for Point
+// TestPointString test toString for Point.
 func TestPointString(t *testing.T) {
 
 	tc1 := Point{5.23, 3.33}

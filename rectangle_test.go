@@ -2,6 +2,7 @@ package geometry
 
 import "testing"
 
+// ExecuteTest accepts an expected and actual value (boolean) along with a unitTest object.
 func ExecuteTest(expected, actual bool, t *testing.T) {
 	if actual != expected {
 		t.Errorf("\nExpected: %t\nActual: %t\n", expected, actual)
@@ -23,7 +24,7 @@ func checkIntersections(intersections, validIntersections []Point, t *testing.T)
 	}
 }
 
-// TestIsWellFormed validates that a rectangle can determine if a < b for Points a, b
+// TestIsWellFormed validates that a rectangle can determine if a < b for Points a, b.
 func TestIsWellFormed(t *testing.T) {
 
 	// Valid rectangles
@@ -41,7 +42,7 @@ func TestIsWellFormed(t *testing.T) {
 	ExecuteTest(false, tc4.IsWellFormed(), t)
 }
 
-// TestOverlap test when two rectangles do or don't overlap
+// TestOverlap test when two rectangles do or don't overlap.
 func TestOverlap(t *testing.T) {
 
 	// Basic overlap
@@ -75,7 +76,7 @@ func TestOverlap(t *testing.T) {
 
 }
 
-// TestContains test if one rectangle contains another
+// TestContains test if one rectangle contains another.
 func TestContains(t *testing.T) {
 
 	// Basic containment
@@ -100,7 +101,7 @@ func TestContains(t *testing.T) {
 	ExecuteTest(false, tc5.Contains(&tc1), t)
 }
 
-// TestAdjacent check if two rectangles are adjacent
+// TestAdjacent check if two rectangles are adjacent.
 func TestAdjacent(t *testing.T) {
 
 	// Basic adjaceny
@@ -123,7 +124,7 @@ func TestAdjacent(t *testing.T) {
 	ExecuteTest(false, tc4.Adjacenct(&tc3), t)
 }
 
-// TestEnumeratePoints check if the correct corners are created when enumerating over a rectangle
+// TestEnumeratePoints check if the correct corners are created when enumerating over a rectangle.
 func TestEnumeratePoints(t *testing.T) {
 
 	tc1 := Rectangle{Point{1, 1}, Point{3, 3}}
@@ -141,7 +142,7 @@ func TestEnumeratePoints(t *testing.T) {
 	}
 }
 
-// TestString test toString for Rectangle
+// TestString test toString for Rectangle.
 func TestRectangleString(t *testing.T) {
 
 	tc1 := Rectangle{Point{1, 1}, Point{2, 2}}

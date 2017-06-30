@@ -5,43 +5,42 @@ import (
 	"math"
 )
 
-// Rectangle represented by a bottom left and top right point
+// Rectangle represented by a bottom left and top right Point.
 type Rectangle struct {
-	a, b Point
+	A, B Point
 }
 
-// toString for Rectangle
 func (r *Rectangle) String() string {
-	return fmt.Sprintf("%s | %s", r.a.String(), r.b.String())
+	return fmt.Sprintf("%s | %s", r.A.String(), r.B.String())
 }
 
-// EnumeratePoints return all corners of a Rectangle
+// EnumeratePoints return all corner Points of a Rectangle.
 func (r *Rectangle) EnumeratePoints() []Point {
-	return []Point{r.a, Point{r.b.X, r.a.Y}, Point{r.a.X, r.b.Y}, r.b}
+	return []Point{r.A, Point{r.B.X, r.A.Y}, Point{r.A.X, r.B.Y}, r.B}
 }
 
-// IsWellFormed checks if Point a < Point b
+// IsWellFormed checks if Point a < Point b.
 func (r *Rectangle) IsWellFormed() bool {
-	return r.a.X < r.b.X && r.a.Y < r.b.Y
+	return r.A.X < r.B.X && r.A.Y < r.B.Y
 }
 
-// Overlap checks if two rectangles (r and r2) overlap
+// Overlap checks if two Rectangles overlap.
 func (r *Rectangle) Overlap(r2 *Rectangle) (bool, []Point) {
-	a := Point{math.Max(r.a.X, r2.a.X), math.Max(r.a.Y, r2.a.Y)}
-	b := Point{math.Min(r.b.X, r2.b.X), math.Min(r.b.Y, r2.b.Y)}
+	A := Point{math.Max(r.A.X, r2.A.X), math.Max(r.A.Y, r2.A.Y)}
+	B := Point{math.Min(r.B.X, r2.B.X), math.Min(r.B.Y, r2.B.Y)}
 	intersections := []Point{}
 
 	// Check if intersecting rectangle is well formed, a <= b
-	if a.X > b.X || a.Y > b.Y {
+	if A.X > B.X || A.Y > B.Y {
 		return false, intersections
-	} else if a.X == b.X && a.Y == b.Y {
-		return true, append(intersections, a)
+	} else if A.X == B.X && A.Y == B.Y {
+		return true, append(intersections, A)
 	}
 
 	// Find the points which have an edge on each rectangle
 	// This works by making sure a given point p has a coordinate from each
 	// set P where P is the set of points from one of the two Rectangle args
-	for _, point := range []Point{a, Point{b.X, a.Y}, Point{a.X, b.Y}, b} {
+	for _, point := range []Point{A, Point{B.X, A.Y}, Point{A.X, B.Y}, B} {
 		if func(point Point, rPoints, r2Points []Point) bool {
 			return point.ContainsCoords(rPoints) && point.ContainsCoords(r2Points)
 		}(point, r.EnumeratePoints(), r2.EnumeratePoints()) {
@@ -52,20 +51,20 @@ func (r *Rectangle) Overlap(r2 *Rectangle) (bool, []Point) {
 	return true, intersections
 }
 
-// Contains checks if a rectangle (r) contains another (r2)
+// Contains checks if a rectangle contains another.
 func (r *Rectangle) Contains(r2 *Rectangle) bool {
-	if r.a.X > r2.a.X || r.b.X < r2.b.X {
+	if r.A.X > r2.A.X || r.B.X < r2.B.X {
 		return false
 	}
 
-	if r.a.Y > r2.a.Y || r.b.Y < r2.b.Y {
+	if r.A.Y > r2.A.Y || r.B.Y < r2.B.Y {
 		return false
 	}
 
 	return true
 }
 
-// Adjacenct checks if two rectangles shares an edge
+// Adjacenct checks if two rectangles shares an edge.
 func (r *Rectangle) Adjacenct(r2 *Rectangle) bool {
 
 	// Overlap returns false if the rectangles aren't touching

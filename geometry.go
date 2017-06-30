@@ -1,6 +1,6 @@
 package geometry
 
-// Geometry defines a means of interacting with elements in R^2
+// Geometry defines a means of interacting with Rectangle elements in R^2.
 type Geometry interface {
 	Overlap(r *Rectangle) (bool, []Point)
 	Contains(r *Rectangle) bool
